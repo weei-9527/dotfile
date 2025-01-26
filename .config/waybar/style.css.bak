@@ -1,0 +1,159 @@
+/* 基于 Catppuccin Frappe 配色方案优化的样式 */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(48, 52, 70, 0.8); /* base */
+    border-bottom: 3px solid rgba(131, 139, 167, 0.5); /* overlay1 */
+    color: #c6d0f5; /* text */
+}
+
+tooltip {
+    background: rgba(48, 52, 70, 0.8); /* base */
+    border: 1px solid rgba(131, 139, 167, 0.5); /* overlay1 */
+}
+
+tooltip label {
+    color: #c6d0f5; /* text */
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: #c6d0f5; /* text */
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #414559; /* surface0 */
+    border-bottom: 3px solid #c6d0f5; /* text */
+}
+
+#mode, #clock, #battery, #backlight {
+    padding: 0 10px;
+}
+
+#mode {
+    background: #414559; /* surface0 */
+    border-bottom: 3px solid #c6d0f5; /* text */
+}
+
+#clock {
+    background-color: #414559; /* surface0 */
+}
+
+#battery {
+    background-color: #a6d189; /* green */
+    color: #232634; /* crust */
+}
+
+#backlight {
+    background-color: #414559; /* surface0 */
+}
+
+#battery.charging {
+    color: #c6d0f5; /* text */
+    background-color: #81c8be; /* teal */
+}
+
+@keyframes blink {
+    to {
+        background-color: #e78284; /* red */
+        color: #c6d0f5; /* text */
+    }
+}
+
+#battery.warning:not(.charging) {
+    background: #e78284; /* red */
+    color: #c6d0f5; /* text */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* 新增的模块样式 */
+#user {
+    background: #303446; /* base */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#hyprland\/workspaces {
+    background: #414559; /* surface0 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#hyprland\/submap {
+    background: #51576d; /* surface1 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#wlr\/taskbar {
+    background: #626880; /* surface2 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#hyprland\/window {
+    background: #292c3c; /* mantle */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#privacy {
+    background: #414559; /* surface0 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#systemd-failed-units {
+    background: #303446; /* base */
+    color: #e78284; /* red */
+    padding: 0 10px;
+}
+
+#network {
+    background: #51576d; /* surface1 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#wireplumber {
+    background: #626880; /* surface2 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#cpu {
+    background: #414559; /* surface0 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#memory {
+    background: #292c3c; /* mantle */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#notifications {
+    background: #414559; /* surface0 */
+    color: #c6d0f5; /* text */
+    padding: 0 10px;
+}
+
+#updates {
+    background: #303446; /* base */
+    color: #a6d189; /* green */
+    padding: 0 10px;
+}
+
