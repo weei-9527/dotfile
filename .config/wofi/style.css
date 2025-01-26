@@ -1,0 +1,60 @@
+window {
+margin: 0px;
+border: 2px solid rgba(198, 160, 246, 0.8);    /* Frappe Mauve */
+border-radius: 15px;
+background-image: url("/home/weei/Pictures/wallpaper/cute_kitten_close_up-wallpaper-2880x1800.jpg");
+background-size: cover;
+background-position: center;
+font-family: "JetBrainsMono Nerd Font";
+}
+
+#input {
+margin: 5px;
+padding: 10px;
+border: none;
+border-radius: 10px;
+color: #c6d0f5;    /* Frappe Text */
+background-color: rgba(98, 104, 128, 0.85);    /* Frappe Surface1 */
+}
+
+#inner-box {
+margin: 5px;
+border: none;
+background-color: rgba(48, 52, 70, 0.85);    /* Frappe Base */
+}
+
+#outer-box {
+margin: 5px;
+border: none;
+background-color: rgba(48, 52, 70, 0.85);    /* Frappe Base */
+backdrop-filter: blur(10px);
+}
+
+#scroll {
+margin: 0px;
+border: none;
+}
+
+#text {
+margin: 5px;
+border: none;
+color: #c6d0f5;    /* Frappe Text */
+} 
+
+#entry.activatable #text {
+color: #c6d0f5;    /* Frappe Text */
+}
+
+#entry > * {
+color: #c6d0f5;    /* Frappe Text */
+}
+
+#entry:selected {
+background-color: rgba(98, 104, 128, 0.85);    /* Frappe Surface1 */
+border-radius: 10px;
+}
+
+#entry:selected #text {
+color: #ca9ee6;    /* Frappe Mauve */
+font-weight: bold;
+}
