@@ -1,0 +1,83 @@
+# 基础配置
+max-history=10
+sort=-time
+
+# 样式设置
+font=JetBrainsMono Nerd Font 10
+width=300
+height=100
+margin=10
+padding=8
+border-size=2
+border-radius=8
+default-timeout=5000
+layer=overlay
+
+# Catppuccin Frappe 配色
+background-color=#303446
+text-color=#c6d0f5
+border-color=#8caaee
+progress-color=over #8caaee
+
+# 按优先级显示不同颜色
+[urgency=low]
+border-color=#a6d189
+default-timeout=3000
+
+[urgency=normal]
+border-color=#8caaee
+default-timeout=5000
+
+[urgency=high]
+border-color=#e78284
+default-timeout=10000
+
+# 分类通知样式
+[category=audio]
+default-timeout=1000
+group-by=category
+border-color=#8caaee
+
+[category=audio-volume]
+default-timeout=1000
+group-by=category
+border-color=#8caaee
+
+[app-name=volume]
+default-timeout=1000
+group-by=app-name
+border-color=#8caaee
+
+[app-name=volumectl]
+default-timeout=1000
+group-by=app-name
+border-color=#8caaee
+
+[category=brightness]
+default-timeout=1000
+group-by=category
+border-color=#ef9f76
+
+[category=kbd-backlight]
+default-timeout=1000
+group-by=category
+border-color=#ef9f76
+
+[category=screenshot]
+default-timeout=3000
+group-by=category
+border-color=#a6d189
+
+# 特定应用通知样式
+[app-name=firefox]
+border-color=#ef9f76
+
+[app-name=spotify]
+border-color=#a6d189
+
+[app-name=discord]
+border-color=#ca9ee6
+
+# 隐藏模式设置
+[mode=do-not-disturb]
+invisible=1 
