@@ -1,60 +1,64 @@
+/* Nord Light 主题颜色 */
+@define-color bg #eceff4;          /* nord6 */
+@define-color fg #2e3440;          /* nord0 */
+@define-color selected #88c0d0;    /* nord8 */
+@define-color selected-fg #2e3440; /* nord0 */
+@define-color border #d8dee9;      /* nord4 */
+
 window {
-margin: 0px;
-border: 2px solid rgba(198, 160, 246, 0.8);    /* Frappe Mauve */
-border-radius: 15px;
-background-image: url("/home/weei/Pictures/wallpaper/cute_kitten_close_up-wallpaper-2880x1800.jpg");
-background-size: cover;
-background-position: center;
-font-family: "JetBrainsMono Nerd Font";
+    margin: 5px;
+    background-color: @bg;
+    border-radius: 8px;
+    border: 2px solid @border;
+    font-family: "Sarasa UI SC";
+    font-size: 14px;
 }
 
 #input {
-margin: 5px;
-padding: 10px;
-border: none;
-border-radius: 10px;
-color: #c6d0f5;    /* Frappe Text */
-background-color: rgba(98, 104, 128, 0.85);    /* Frappe Surface1 */
+    margin: 5px;
+    padding: 5px 10px;
+    border: none;
+    color: @fg;
+    background-color: @border;
+    border-radius: 5px;
 }
 
 #inner-box {
-margin: 5px;
-border: none;
-background-color: rgba(48, 52, 70, 0.85);    /* Frappe Base */
+    margin: 5px;
+    background-color: @bg;
 }
 
 #outer-box {
-margin: 5px;
-border: none;
-background-color: rgba(48, 52, 70, 0.85);    /* Frappe Base */
-backdrop-filter: blur(10px);
+    margin: 5px;
+    padding: 10px;
+    background-color: @bg;
+    border-radius: 8px;
 }
 
 #scroll {
-margin: 0px;
-border: none;
+    margin: 5px;
+    background-color: @bg;
 }
 
 #text {
-margin: 5px;
-border: none;
-color: #c6d0f5;    /* Frappe Text */
-} 
-
-#entry.activatable #text {
-color: #c6d0f5;    /* Frappe Text */
+    margin: 5px;
+    color: @fg;
 }
 
-#entry > * {
-color: #c6d0f5;    /* Frappe Text */
+#entry {
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 #entry:selected {
-background-color: rgba(98, 104, 128, 0.85);    /* Frappe Surface1 */
-border-radius: 10px;
+    background-color: @selected;
+    border-radius: 5px;
 }
 
 #entry:selected #text {
-color: #ca9ee6;    /* Frappe Mauve */
-font-weight: bold;
+    color: @selected-fg;
+}
+
+#img {
+    margin: 5px;
 }

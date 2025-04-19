@@ -1,128 +1,80 @@
-@import "frappe.css";
-
 * {
-    font-family: "JetBrainsMono Nerd Font", "Noto Sans CJK SC", sans-serif;
-    font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font", "Sarasa UI SC";
+    font-size: 14px;
     font-weight: bold;
     min-height: 0;
     border: none;
     border-radius: 0;
     margin: 0;
     padding: 0;
+    transition: all 0.3s ease;
 }
 
 window#waybar {
-    background-color: rgba(48, 52, 70, 0.85);
-    border: none;
-    border-radius: 0;
-    color: #c6d0f5;
-    transition-property: background-color;
-    transition-duration: 0.5s;
-    margin: 0;
-    padding: 2px 0;
+    background: #d8dee9;  /* nord4 - 较暗的背景色 */
+    border-radius: 0px;
+    color: #2e3440;  /* nord0 - 深色主文本 */
+    box-shadow: 0 2px 4px rgba(46, 52, 64, 0.2);  /* 为整个bar添加微弱阴影 */
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+    opacity: 0.5;
 }
 
-tooltip {
-    background-color: #303446;
-    border: 1px solid rgba(202, 158, 230, 0.3);
-    border-radius: 8px;
-}
-
-tooltip label {
-    color: #c6d0f5;
-    padding: 2px 8px;
-}
-
-/* 通用模块样式 */
-.modules-left, 
+/* 模块通用样式 */
+.modules-left,
 .modules-center,
 .modules-right {
-    background-color: transparent;
-    padding: 0 2px;
-}
-
-/* 启动器 */
-#custom-launcher {
-    background-color: rgba(198, 160, 246, 0.4);
-    color: #c6d0f5;
+    background: #d8dee9;  /* nord4 */
     padding: 0 8px;
-    margin: 2px 4px;
-    border-radius: 4px;
 }
 
-#custom-launcher:hover {
-    background-color: rgba(198, 160, 246, 0.6);
-}
-
-/* 工作区 */
+/* 工作区样式 */
 #workspaces {
-    background-color: transparent;
-    margin: 0 4px;
-    padding: 0;
+    border-radius: 10px;
+    padding: 0 5px;
+    margin: 4px 3px;
 }
 
 #workspaces button {
+    color: #4c566a;  /* nord3 - 不活跃文本 */
     padding: 0 4px;
-    margin: 2px 2px;
-    background-color: rgba(65, 69, 89, 0.4);
-    color: #c6d0f5;
-    border-radius: 4px;
-    min-width: 20px;
-    transition: all 0.2s ease;
+    margin: 4px 3px;
+    border-radius: 8px;
+    background: #eceff4;  /* nord6 - 较亮的模块背景 */
+    transition: all 0.3s ease;
+    min-width: 30px;
+    box-shadow: 0 2px 4px rgba(46, 52, 64, 0.15);  /* 添加阴影 */
 }
 
 #workspaces button.active {
-    background-color: rgba(202, 158, 230, 0.7);
-    color: #303446;
+    color: #2e3440;  /* nord0 - 深色文本 */
+    background: #88c0d0;  /* nord8 - 主要强调色 */
+    min-width: 35px;
+    box-shadow: 0 2px 8px rgba(136, 192, 208, 0.6);  /* 增强活动工作区的阴影 */
+    text-shadow: 0 0 3px rgba(236, 239, 244, 0.6);  /* 增强文本阴影 */
 }
 
 #workspaces button:hover {
-    background-color: rgba(81, 87, 109, 0.4);
-    box-shadow: none;
-    text-shadow: none;
+    background: #5e81ac;  /* nord10 */
+    color: #eceff4;  /* nord6 */
+    min-width: 35px;
+    box-shadow: 0 2px 8px rgba(94, 129, 172, 0.6);  /* 添加悬停阴影 */
 }
 
-#workspaces button.urgent {
-    background-color: rgba(231, 130, 132, 0.7);
-    color: #303446;
-}
-
-/* 窗口标题 */
-#window {
-    margin: 2px 4px;
+/* 分组样式 */
+#group-hardware,
+#group-audio,
+#group-network,
+#group-power {
+    background: #eceff4;  /* nord6 - 较亮的模块背景 */
+    margin: 4px 3px;
     padding: 0 8px;
-    border-radius: 4px;
-    background-color: rgba(65, 69, 89, 0.4);
-    color: #c6d0f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(46, 52, 64, 0.15);  /* 添加阴影 */
 }
 
-/* MPD */
-#mpd {
-    background-color: rgba(239, 159, 118, 0.4);
-    color: #c6d0f5;
-    padding: 0 8px;
-    margin: 2px 2px;
-    border-radius: 4px;
-    min-width: 100px;
-}
-
-#mpd.playing {
-    background-color: rgba(166, 209, 137, 0.4);
-}
-
-#mpd.paused {
-    background-color: rgba(229, 200, 144, 0.4);
-}
-
-#mpd.stopped {
-    background-color: rgba(231, 130, 132, 0.4);
-}
-
-/* 状态模块 */
+/* 模块样式 */
 #clock,
 #battery,
 #cpu,
@@ -133,95 +85,134 @@ tooltip label {
 #network,
 #pulseaudio,
 #wireplumber,
-#custom-media,
-#custom-power-profiles,
+#custom-weather,
+#custom-updates,
 #tray,
-#mode,
-#idle_inhibitor,
-#custom-power,
-#custom-pacman,
-#systemd-failed-units,
-#power-profiles-daemon {
-    padding: 0 6px;
-    margin: 2px 2px;
-    color: #c6d0f5;
-    border-radius: 4px;
-    background-color: rgba(65, 69, 89, 0.4);
-    min-width: 20px;
+#mpris,
+#bluetooth,
+#window,
+#idle_inhibitor {
+    padding: 0 8px;
+    margin: 4px 3px;
+    color: #2e3440;  /* nord0 */
+    border-radius: 10px;
+    background: #eceff4;  /* nord6 - 较亮的模块背景 */
+    box-shadow: 0 2px 4px rgba(46, 52, 64, 0.15);  /* 添加阴影 */
+}
+
+/* 特殊模块样式 */
+#custom-weather {
+    color: #5e81ac;  /* nord10 */
+}
+
+#custom-updates {
+    color: #d08770;  /* nord12 */
 }
 
 #clock {
-    background-color: rgba(140, 170, 238, 0.4);
-    min-width: 90px;
-    margin-right: 4px;
+    color: #5e81ac;  /* nord10 */
+    font-weight: bold;
 }
 
 #battery {
-    background-color: rgba(166, 209, 137, 0.4);
-    min-width: 80px;
+    color: #a3be8c;  /* nord14 */
+    background: #eceff4;  /* nord6 - 与其他模块保持一致的背景色 */
 }
 
 #battery.charging, #battery.plugged {
-    background-color: rgba(166, 209, 137, 0.5);
+    color: #a3be8c;  /* nord14 */
+    background: #eceff4;  /* nord6 - 保持一致的背景色 */
+    box-shadow: 0 2px 8px rgba(163, 190, 140, 0.4);  /* 充电状态特殊阴影 */
 }
 
 #battery.critical:not(.charging) {
-    background-color: rgba(231, 130, 132, 0.7);
-    color: #303446;
-    animation: blink 0.5s steps(12) infinite alternate;
+    color: #eceff4;  /* nord6 */
+    background: #bf616a;  /* nord11 */
+    box-shadow: 0 2px 8px rgba(191, 97, 106, 0.6);  /* 危险状态特殊阴影 */
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 
 @keyframes blink {
     to {
-        background-color: #303446;
-        color: #e78284;
+        background: #eceff4;  /* nord6 */
+        color: #bf616a;  /* nord11 */
     }
 }
 
-#network {
-    background-color: rgba(133, 193, 220, 0.4);
-    min-width: 120px;
-}
-
-#network.disconnected {
-    background-color: rgba(231, 130, 132, 0.4);
-}
-
-#pulseaudio {
-    background-color: rgba(229, 200, 144, 0.4);
-    min-width: 100px;
-}
-
-#pulseaudio.muted {
-    background-color: rgba(231, 130, 132, 0.4);
-}
-
 #cpu {
-    background-color: rgba(129, 200, 190, 0.4);
-    min-width: 60px;
+    color: #81a1c1;  /* nord9 */
 }
 
 #memory {
-    background-color: rgba(202, 158, 230, 0.4);
-    min-width: 60px;
+    color: #b48ead;  /* nord15 */
+}
+
+#disk {
+    color: #8fbcbb;  /* nord7 */
 }
 
 #temperature {
-    background-color: rgba(239, 159, 118, 0.4);
-    min-width: 60px;
+    color: #88c0d0;  /* nord8 */
 }
 
 #temperature.critical {
-    background-color: rgba(231, 130, 132, 0.7);
+    color: #bf616a;  /* nord11 */
 }
 
 #backlight {
-    background-color: rgba(242, 213, 207, 0.4);
-    min-width: 70px;
+    color: #81a1c1;  /* nord9 */
+}
+
+#network {
+    color: #88c0d0;  /* nord8 */
+}
+
+#network.disconnected {
+    color: #bf616a;  /* nord11 */
+}
+
+#pulseaudio {
+    color: #81a1c1;  /* nord9 */
+}
+
+#pulseaudio.muted {
+    color: #4c566a;  /* nord3 */
+}
+
+#wireplumber {
+    color: #81a1c1;  /* nord9 */
+}
+
+#wireplumber.muted {
+    color: #4c566a;  /* nord3 */
+}
+
+#bluetooth {
+    color: #88c0d0;  /* nord8 */
+}
+
+#bluetooth.disconnected {
+    color: #4c566a;  /* nord3 */
+}
+
+#mpris {
+    color: #b48ead;  /* nord15 */
+}
+
+#idle_inhibitor {
+    color: #d08770;  /* nord12 */
+}
+
+#idle_inhibitor.activated {
+    color: #bf616a;  /* nord11 */
 }
 
 #tray {
-    background-color: rgba(81, 87, 109, 0.4);
+    background: #e5e9f0;  /* nord5 */
 }
 
 #tray > .passive {
@@ -230,49 +221,37 @@ tooltip label {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: rgba(231, 130, 132, 0.7);
+    background: #bf616a;  /* nord11 */
+    box-shadow: 0 2px 8px rgba(191, 97, 106, 0.6);  /* 需要注意状态特殊阴影 */
 }
 
-#custom-power {
-    background-color: rgba(231, 130, 132, 0.4);
-    margin-right: 4px;
+#window {
+    color: #2e3440;  /* nord0 */
+    font-style: italic;
 }
 
-#custom-pacman {
-    background-color: rgba(202, 158, 230, 0.4);
-    min-width: 25px;
+/* 工具提示样式 */
+tooltip {
+    background: #eceff4;  /* nord6 */
+    border: 1px solid #81a1c1;  /* nord9 */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(46, 52, 64, 0.2);  /* 添加工具提示阴影 */
 }
 
-#custom-media {
-    background-color: rgba(239, 159, 118, 0.4);
-    min-width: 100px;
-    margin: 2px 4px;
+tooltip label {
+    color: #2e3440;  /* nord0 */
+    padding: 5px;
 }
 
-#power-profiles-daemon {
-    background-color: rgba(140, 170, 238, 0.4);
-    min-width: 25px;
-    padding: 0 6px;
-}
-
-#power-profiles-daemon.performance {
-    background-color: rgba(231, 130, 132, 0.6);
-}
-
-#power-profiles-daemon.power-saver {
-    background-color: rgba(166, 209, 137, 0.6);
-}
-
-#power-profiles-daemon.balanced {
-    background-color: rgba(229, 200, 144, 0.6);
-}
-
-#systemd-failed-units {
-    background-color: rgba(231, 130, 132, 0.4);
-    min-width: 25px;
-}
-
-#systemd-failed-units.ok {
-    background-color: rgba(166, 209, 137, 0.4);
-}
-
+/* 动画效果 */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+} 

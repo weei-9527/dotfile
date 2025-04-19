@@ -1,224 +1,226 @@
-// -*- mode: jsonc -*-
+// Waybar配置文件 - 更多信息请访问 https://github.com/Alexays/Waybar/wiki/
+
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
+    // 基础设置
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 40,
+
+    // 模块布局
     "modules-left": [
-        "custom/launcher",
-        "hyprland/workspaces",
-        "hyprland/submap",
-    //    "sway/scratchpad",
-        "custom/media"
+        "hyprland/workspaces",    // 工作区
+        "hyprland/window",        // 当前窗口
+        "custom/weather",         // 天气
+        "custom/updates"          // 系统更新
     ],
+    
     "modules-center": [
-        "hyprland/window"
+        "clock",                  // 时钟
+        "mpris"                   // 媒体播放器
     ],
+    
     "modules-right": [
-        "mpd",
-        "custom/pacman",
-        "pulseaudio",
-        "network",
-        "power-profiles-daemon",
-        "cpu",
-        "memory",
-        "temperature",
-        "backlight",
-        "systemd-failed-units",
-        "battery",
-        "clock",
-        "custom/clipboard",
-        "tray"
+        "group/hardware",         // 硬件信息组
+        "group/audio",            // 音频控制组
+        "group/network",          // 网络组
+        "group/power",            // 电源组
+        "tray"                    // 系统托盘
     ],
-    // Modules configuration
+
+    // 硬件信息组
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+//            "cpu",               // CPU使用率
+//            "memory",            // 内存使用
+//            "temperature",       // 温度
+            "disk"              // 磁盘使用
+        ]
+    },
+
+    // 音频控制组
+    "group/audio": {
+        "orientation": "horizontal",
+        "modules": [
+            "wireplumber"        // WirePlumber
+        ]
+    },
+
+    // 网络组
+    "group/network": {
+        "orientation": "horizontal",
+        "modules": [
+            "network",           // 网络连接
+            "bluetooth"          // 蓝牙
+        ]
+    },
+
+    // 电源组
+    "group/power": {
+        "orientation": "horizontal",
+        "modules": [
+            "backlight",         // 屏幕亮度
+            "battery"           // 电池状态
+        ]
+    },
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+
     "hyprland/window": {
         "format": " {}",
-        "rewrite": {
-            "(.*) — Mozilla Firefox": "🌎 $1",
-            "(.*) - fish": "> [$1]"
-        },
-        "separate-outputs": false
+        "max-length": 50,
+        "separate-outputs": true
     },
-    "custom/launcher":{
-        "format": " ",
-        "on-click": "wofi --show drun",
-        "on-click-right": "killall wofi"
-    },
-     "hyprland/workspaces": {
-        "disable-scroll": true,
-        "sort-by-name": true,
-        "format": " {icon} ",
-        "format-icons":  "󰊠"
-       },
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "sway/scratchpad": {
-        "format": "{icon} {count}",
-        "show-empty": false,
-        "format-icons": ["", ""],
-        "tooltip": true,
-        "tooltip-format": "{app}: {title}"
-    },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 5,
-        "consume-icons": {
-            "on": " "
-        },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "custom/pacman": {
-        "format": "{} ",
+
+    "custom/weather": {
+        "format": " {}",
+        "exec": "curl 'wttr.in/hangzhou?format=1'",
         "interval": 3600,
-    "exec": "(checkupdates; yay -Qum | wc -l)",  // 检查官方包和 AUR 更新数量
-    "exec-if": "command -v yay >/dev/null 2>&1", // 确保 yay 存在
-    "on-click": "wezterm start -- fish -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar", // 更新系统并刷新 Waybar
-        "signal": 8,
-        "tooltip": true,
-        "tooltip-format": "待更新: {}"
+        "on-click": "xdg-open 'https://wttr.in/hangzhou'"
     },
-    "tray": {
-        "icon-size": 16,
-        "spacing": 8
+
+    "custom/updates": {
+        "format": "󰣇 {}",
+        "exec": "checkupdates 2>/dev/null | wc -l || echo '0'",
+        "exec-if": "which checkupdates",
+        "interval": 3600,
+        "on-click": "wezterm -e yay -Syu",
+        "return-type": "string"
     },
+
+    "mpris": {
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "󰐊",
+            "mpv": "󰝚",
+            "spotify": "",
+            "firefox": ""
+        },
+        "status-icons": {
+            "paused": "󰏤"
+        },
+        "interval": 1,
+        "timeout": 5,
+        "max-length": 50
+    },
+
     "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d %A}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "timezone": "Asia/Shanghai",
+        "format": " {:%H:%M}",
+        "format-alt": " {:%Y-%m-%d %A}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
-            "mode"          : "month",
-            "mode-mon-col"  : 3,
-            "weeks-pos"     : "right",
-            "on-scroll"     : 1,
-            "on-click-right": "mode",
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
             "format": {
-                "months":     "<span color='#ffead3'><b>{}</b></span>",
-                "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
             }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
         }
     },
+
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+        "format": "󰻠 {usage}%",
+        "tooltip": true,
+        "interval": 1
     },
+
     "memory": {
-        "format": "{}% "
+        "format": "󰘚 {percentage}%",
+        "tooltip-format": "Memory - Used: {used:0.1f}GiB\nAvailable: {avail:0.1f}GiB\nTotal: {total:0.1f}GiB"
     },
+
+    "temperature": {
+        "thermal-zone": 0,
+        "critical-threshold": 80,
+        "format-critical": "{icon} {temperatureC}°C",
+        "format": "{icon} {temperatureC}°C",
+        "format-icons": ["󱃃", "󱃃", "󱃃", "󰔏", "󱃂"],
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "CPU温度: {temperatureC}°C\n低温 < 45°C\n中温 45-65°C\n高温 > 65°C"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "path": "/"
+    },
+
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "brightnessctl set +5%",
+        "on-scroll-down": "brightnessctl set 5%-"
     },
-    "systemd-failed-units": {
-        "hide-on-ok": false, // Do not hide if there is zero failed units.
-        "format": "✗ {nr_failed}",
-        "format-ok": "✓", 
-        "system": true, // Monitor failed systemwide units.
-        "user": true, // Ignore failed user units.
-        "on-click": "wezterm start -- fish -c 'systemctl --failed; echo Done - Press enter to exit; read'" // 点击时在终端中查看失败的systemd单元
-    },
+
     "battery": {
         "states": {
             "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-full": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
-    "power-profiles-daemon": {
-      "format": "{icon}",
-      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-      "tooltip": true,
-      "format-icons": {
-        "default": "",
-        "performance": "",
-        "balanced": "",
-        "power-saver": ""
-      }
-    },
+
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-wifi": "󰤨 {essid} ({signalStrength}%)",
+        "format-ethernet": "󰈀 {ipaddr}/{cidr}",
+        "tooltip-format": "󰈀 {ifname} via {gwaddr}",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "󰤭 Disconnected",
+        "format-alt": "󰈀 {ifname}: {ipaddr}/{cidr}"
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon}     {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
+
+    "bluetooth": {
+        "format": "󰂯 {status}",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": ["󰕿", "󰖀", "󰕾"],
         "on-click": "pavucontrol"
     },
-    "custom/media": {
-        "format": "{icon} {text}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": "",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    },
-    "custom/clipboard": {
-        "format": " {}",
-        "exec": "echo $(cliphist list | wc -l)",
-        "on-click": "cliphist list | wofi --dmenu | cliphist decode | wl-copy",
-        "on-click-right": "cliphist list | wofi --dmenu | cliphist delete",
-        "interval": 10
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10,
+        "show-passive-items": false,
+        "format": "{icon}",
+        "icon-theme": "Papirus-Dark"
     }
-}
+} 

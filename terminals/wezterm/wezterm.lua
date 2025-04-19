@@ -4,6 +4,9 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
+-- 配置配色方案
+config.color_scheme = 'nord-light'
+
 -- 配置字体
 config.font = wezterm.font_with_fallback({
   'JetBrainsMono Nerd Font',
@@ -26,9 +29,6 @@ config.window_padding = {
 -- 窗口装饰
 config.window_decorations = "NONE"  -- 完全隐藏窗口装饰
 config.window_close_confirmation = "AlwaysPrompt"  -- 关闭窗口时总是提示
-
--- 配置配色方案
-config.color_scheme = 'Catppuccin Frappe'
 
 -- 启用连字
 config.harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' }

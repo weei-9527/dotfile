@@ -1,19 +1,92 @@
+# 指定 Wofi 启动时显示的模式，这里设置为 "drun"，用于搜索和启动应用程序
 show=drun
+
+# 设置 Wofi 窗口的固定宽度，单位为像素
 width=800
+
+# 设置 Wofi 窗口的固定高度，单位为像素
 height=400
+
+# 设置 Wofi 是否始终解析命令行参数，通常设置为 true 以便在脚本中使用
 always_parse_args=true
+
+# 设置是否只显示可执行的应用程序 (false) 或显示所有文件 (true)
 show_all=false
+
+# 设置是否将选定应用程序的执行命令打印到标准输出
 print_command=true
+
+# 设置 Wofi 窗口的图层，"overlay" 使其显示在其他窗口之上
 layer=overlay
+
+# 设置搜索是否不区分大小写 (true) 或区分大小写 (false)
 insensitive=true
+
+# 设置 Wofi 窗口顶部的提示文本
 prompt=搜索应用...
+
+# 设置 Wofi 是否作为普通窗口被窗口管理器管理 (false 表示不作为普通窗口)
 normal_window=false
+
+# 设置 Wofi 窗口在屏幕上的位置，这里设置为居中
 location=center
+
+# 强制 Wofi 使用 GTK 的暗色主题 (如果可用)
 gtk_dark=true
+
+# 允许在 Wofi 中显示应用程序图标
 allow_images=true
+
+# 设置应用程序图标的大小，单位为像素
 image_size=24
+
+# 设置 Wofi 的缓存文件路径，设置为 /dev/null 表示禁用缓存
 cache_file=/dev/null
+
+# 设置在 Wofi 中启动终端应用程序时使用的终端模拟器
 term=kitty
+
+# 将搜索结果显示为两列
 columns=2
+
+# 设置动画的持续时间，单位为毫秒
 animation-duration=200
-gtk-application-prefer-dark-theme=true 
+
+# 告诉 GTK 应用程序优先使用暗色主题
+gtk-application-prefer-dark-theme=true
+
+# 设置 Wofi 使用的字体，请确保您的系统安装了指定的字体
+font=Noto Sans CJK SC Regular 10
+
+# 设置默认的前景色 (文本颜色)，使用 ARGB 十六进制格式
+foreground=ddddddff
+
+# 设置默认的背景色，使用 ARGB 十六进制格式
+background=222222ff
+
+# 设置选中项目的前景色 (文本颜色)，使用 ARGB 十六进制格式
+selected_foreground=ffffffdd
+
+# 设置选中项目的背景色，使用 ARGB 十六进制格式
+selected_background=555555ff
+
+# 设置输入框中的文本颜色，使用 ARGB 十六进制格式
+input_foreground=eeeeeeff
+
+# 设置输入框的背景色，使用 ARGB 十六进制格式
+input_background=333333ff
+
+# 设置输入框边框的颜色，使用 ARGB 十六进制格式
+input_border_color=555555ff
+
+# 设置 Wofi 窗口边框的宽度，单位为像素
+border=2
+
+# 设置 Wofi 窗口边框的颜色，使用 ARGB 十六进制格式
+border_color=333333ff
+
+# 启用模糊匹配，允许输入不完整的应用程序名称进行搜索
+matching=fuzzy
+
+# 对搜索结果进行排序 (通常按字母顺序)
+sort=yes

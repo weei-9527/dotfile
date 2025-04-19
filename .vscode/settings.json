@@ -1,0 +1,9 @@
+{
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'Sarasa Mono SC', monospace",
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'Sarasa Mono SC', monospace",
+    "files.associations": {
+        "**/waybar/config": "jsonc",
+        "**/waybar/config.json": "jsonc"
+    }
+}
